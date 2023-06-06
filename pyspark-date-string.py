@@ -19,6 +19,7 @@ df.select(current_date().alias("current_date"), \
       date_format(current_timestamp(),"yyyy MMM dd").alias("yyyy MMMM dd"), \
       date_format(current_timestamp(),"yyyy MMMM dd E").alias("yyyy MMMM dd E") \
    ).show()
+# date_format 是pyspark.sql.functions
 
 #SQL
 

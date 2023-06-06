@@ -34,7 +34,7 @@ df.withColumn("hair",df.properties.getItem("hair")) \
   .withColumn("eye",df.properties.getItem("eye")) \
   .drop("properties") \
   .show()
-
+# df.mapTypeField1.getItem("hair") 可以获取各行的MapType列的某一个key的值
 df.withColumn("hair",df.properties["hair"]) \
   .withColumn("eye",df.properties["eye"]) \
   .drop("properties") \

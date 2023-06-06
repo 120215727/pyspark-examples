@@ -33,6 +33,7 @@ df.sort(col("department"),col("state")).show(truncate=False)
 
 df.orderBy("department","state").show(truncate=False)
 df.orderBy(col("department"),col("state")).show(truncate=False)
+# sort和orderBy有什么区别？
 
 df.sort(df.department.asc(),df.state.asc()).show(truncate=False)
 df.sort(col("department").asc(),col("state").asc()).show(truncate=False)

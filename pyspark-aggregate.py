@@ -31,10 +31,18 @@ schema = ["employee_name", "department", "salary"]
   
 df = spark.createDataFrame(data=simpleData, schema = schema)
 df.printSchema()
-df.show(truncate=False)
+df.show(truncate=False)# truncate =False，表示关闭只显示20个字符的特性
 
+# df.select(approx_count_distinct("salary")) 是一个DataFrame
+# df.select(approx_count_distinct("salary")).collect() 是一个 [Row(approx_count_distinct(salary)=6)]
+# df.select(approx_count_distinct("salary")).collect()[0] 是第一个Row
+# df.select(approx_count_distinct("salary")).collect() [0][0] 是第一个Row的第一个字段，也就是实际的结果值
 print("approx_count_distinct: " + \
       str(df.select(approx_count_distinct("salary")).collect()[0][0]))
+
+print("approx_count_distinct: " + \
+      df.select(approx_count_distinct("salary")))
+# APPROX_COUNT_DISTINCT函数用于计算某一列去重后的行数，结果只能返回一个值，并且该值为近似值。
 
 print("avg: " + str(df.select(avg("salary")).collect()[0][0]))
 

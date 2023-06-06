@@ -20,7 +20,7 @@ df.show(truncate=False)
 
 from pyspark.sql.functions import col, concat_ws
 df2 = df.withColumn("languagesAtSchool",
-   concat_ws(",",col("languagesAtSchool")))
+   concat_ws(",",col("languagesAtSchool"))) # 把list做了连接
 df2.printSchema()
 df2.show(truncate=False)
 

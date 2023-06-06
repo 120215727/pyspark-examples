@@ -22,7 +22,7 @@ df.show(truncate=False)
 
 from pyspark.sql.functions import split, col
 df2 = df.select(split(col("name"),",").alias("NameArray")) \
-    .drop("name")
+    .drop("name")  # 通过split可以做到string to array
 df2.printSchema()
 df2.show()
 

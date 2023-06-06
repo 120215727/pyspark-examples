@@ -43,6 +43,7 @@ df.groupBy("department") \
          max("bonus").alias("max_bonus") \
      ) \
     .show(truncate=False)
+# 如果需要聚合，对于dataFrame，先groupBy，然后agg(sum("field1"),...)
     
 df.groupBy("department") \
     .agg(sum("salary").alias("sum_salary"), \
@@ -51,3 +52,4 @@ df.groupBy("department") \
       max("bonus").alias("max_bonus")) \
     .where(col("sum_bonus") >= 50000) \
     .show(truncate=False)
+# 聚合后，还可以按sum_bonus 筛选

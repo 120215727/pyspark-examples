@@ -63,6 +63,7 @@ df.rdd.foreach(lambda x:
 dataCollect = df.collect()
 for row in dataCollect:
     print(row['firstname'] + "," +row['lastname'])
+# 通过这种方式可以遍历
     
 #Convert to Pandas and Iterate
 

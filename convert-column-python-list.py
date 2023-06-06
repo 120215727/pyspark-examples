@@ -14,29 +14,17 @@ data = [("James","Smith","USA","CA"),("Michael","Rose","USA","NY"), \
 columns=["firstname","lastname","country","state"]
 df=spark.createDataFrame(data=data,schema=columns)
 df.show()
-print(df.collect())
-
-states1=df.rdd.map(lambda x: x[3]).collect()
-print(states1)
-#['CA', 'NY', 'CA', 'FL']
-from collections import OrderedDict 
-res = list(OrderedDict.fromkeys(states1)) 
-print(res)
-#['CA', 'NY', 'FL']
+print(df.collect()) # collect将收集DataFrame的所有元素，因此，此操作需要在较小的数据集上操作，如果DataFrame很大，使用collect可能会造成内存溢出。
 
 
-#Example 2
-states2=df.rdd.map(lambda x: x.state).collect()
-print(states2)
-#['CA', 'NY', 'CA', 'FL']
+
+
 
 states3=df.select(df.state).collect()
 print(states3)
 #[Row(state='CA'), Row(state='NY'), Row(state='CA'), Row(state='FL')]
 
-states4=df.select(df.state).rdd.flatMap(lambda x: x).collect()
-print(states4)
-#['CA', 'NY', 'CA', 'FL']
+
 
 states5=df.select(df.state).toPandas()['state']
 states6=list(states5)

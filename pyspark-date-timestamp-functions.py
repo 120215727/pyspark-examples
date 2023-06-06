@@ -37,6 +37,7 @@ df.select(col("input"),
 df.select(col("input"), 
     months_between(current_date(),col("input")).alias("months_between")  
   ).show()
+# functions,alias ,select ,
 
 #trunc()
 df.select(col("input"), 

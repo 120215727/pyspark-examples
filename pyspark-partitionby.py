@@ -36,6 +36,7 @@ df.write.option("header",True) \
         .partitionBy("state") \
         .mode("overwrite") \
         .csv("c:/tmp/zipcodes-state-more")
+# write时，也可以partitionBy
         
 dfPartition=spark.read.option("header",True)\
                  .csv("c:/tmp/zipcodes-state")

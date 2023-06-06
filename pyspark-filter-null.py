@@ -27,7 +27,7 @@ df.filter(df.state.isNull()).show()
 df.filter(col("state").isNull()).show()
 
 df.filter("state IS NULL AND gender IS NULL").show()
-df.filter(df.state.isNull() & df.gender.isNull()).show()
+df.filter(df.state.isNull() & df.gender.isNull()).show() # 与 / ADD 的符号表示是&，不是&&
 
 df.filter("state is not NULL").show()
 df.filter("NOT state is NULL").show()

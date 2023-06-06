@@ -27,6 +27,7 @@ df.printSchema()
 df.show(truncate=False)
 
 df.groupBy("state").sum("salary").show()
+# 除了可以 agg(sum("salary").alias("sum_salary")) ，也可以 sum("salary")
 
 dfGroup=df.groupBy("state") \
           .agg(sum("salary").alias("sum_salary"))
@@ -37,7 +38,7 @@ dfFilter=dfGroup.filter(dfGroup.sum_salary > 100000)
 dfFilter.show()
 
 from pyspark.sql.functions import asc
-dfFilter.sort("sum_salary").show()
+dfFilter.sort("sum_salary").show() # 调用sort可以排序，但应该会花费很多资源？
 
 from pyspark.sql.functions import desc
 dfFilter.sort(desc("sum_salary")).show()
@@ -47,6 +48,7 @@ df.groupBy("state") \
   .filter(col("sum_salary") > 100000)  \
   .sort(desc("sum_salary")) \
   .show()
+# desc("sum_salary") 和col("sum_salary") 有什么区别？
   
 df.createOrReplaceTempView("EMP")
 spark.sql("select state, sum(salary) as sum_salary from EMP " +

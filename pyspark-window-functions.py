@@ -30,6 +30,8 @@ df.show(truncate=False)
 from pyspark.sql.window import Window
 from pyspark.sql.functions import row_number
 windowSpec  = Window.partitionBy("department").orderBy("salary")
+# Window 也有这种用法，和实时服务的方式不一样。
+# row_number 是做什么用的
 
 df.withColumn("row_number",row_number().over(windowSpec)) \
     .show(truncate=False)

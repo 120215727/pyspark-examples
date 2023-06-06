@@ -19,6 +19,7 @@ data = [(1,10),(2,20),(3,10),(4,20),(5,10),
 
 df=spark.createDataFrame(data,["id","value"])
 
+# repartition(numPartitions: int, *cols: ColumnOrName)
 df.repartition(3,"value").explain(True)        
 df.repartition("value") \
   .write.option("header",True) \
@@ -26,6 +27,9 @@ df.repartition("value") \
   .csv("c:/tmp/range-partition")
 
 df.repartitionByRange("value").explain(True)
+# repartitionByRange(
+#         self, numPartitions: int, *cols: ColumnOrName
+#     )
 df.repartitionByRange(3,"value").explain(True)
 
 df.repartitionByRange(3,"value") \

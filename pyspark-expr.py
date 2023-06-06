@@ -10,7 +10,7 @@ from pyspark.sql.functions import expr
 #Concatenate columns
 data=[("James","Bond"),("Scott","Varsa")] 
 df=spark.createDataFrame(data).toDF("col1","col2") 
-df.withColumn("Name",expr(" col1 ||','|| col2")).show()
+df.withColumn("Name",expr(" col1 ||','|| col2")).show() # ||表示什么？ 表示连接吗？
 
 #Using CASE WHEN sql expression
 data = [("James","M"),("Michael","F"),("Jen","")]

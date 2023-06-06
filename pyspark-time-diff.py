@@ -20,9 +20,11 @@ dates = [("1","2019-07-01 12:01:19.111"),
 df = spark.createDataFrame(data=dates, schema=["id","from_timestamp"])
 
 from pyspark.sql.functions import *
+
 df2=df.withColumn('from_timestamp',to_timestamp(col('from_timestamp')))\
   .withColumn('end_timestamp', current_timestamp())\
   .withColumn('DiffInSeconds',col("end_timestamp").cast("long") - col('from_timestamp').cast("long"))
+# to_timestamp 是把string，转为unix 时间戳？
 df2.show(truncate=False)
 
 df.withColumn('from_timestamp',to_timestamp(col('from_timestamp')))\
@@ -43,6 +45,19 @@ data= [("12:01:19.000","13:01:19.000"),
     ("16:44:55.406","17:44:55.406"),
     ("16:50:59.406","16:44:59.406")]
 df3 = spark.createDataFrame(data=data, schema=["from_timestamp","to_timestamp"])
+# root
+#  |-- id: string (nullable = true)
+#  |-- from_timestamp: timestamp (nullable = true)
+#  |-- end_timestamp: timestamp (nullable = false)
+#  |-- DiffInSeconds: long (nullable = true)
+# +---+-----------------------+-----------------------+-------------+
+# |id |from_timestamp         |end_timestamp          |DiffInSeconds|
+# +---+-----------------------+-----------------------+-------------+
+# |1  |2019-07-01 12:01:19.111|2023-06-06 17:34:28.497|124090389    |
+# |2  |2019-06-24 12:01:19.222|2023-06-06 17:34:28.497|124695189    |
+# |3  |2019-11-16 16:44:55.406|2023-06-06 17:34:28.497|112150173    |
+# |4  |2019-11-16 16:50:59.406|2023-06-06 17:34:28.497|112149809    |
+# +---+-----------------------+-----------------------+-------------+
 
 df3.withColumn("from_timestamp",to_timestamp(col("from_timestamp"),"HH:mm:ss.SSS")) \
    .withColumn("to_timestamp",to_timestamp(col("to_timestamp"),"HH:mm:ss.SSS")) \

@@ -49,6 +49,7 @@ schema = StructType() \
       .add("EstimatedPopulation",IntegerType(),True) \
       .add("TotalWages",IntegerType(),True) \
       .add("Notes",StringType(),True)
+# 也可以用上面的方法构建StructType
       
 df_with_schema = spark.read.format("csv") \
       .option("header", True) \

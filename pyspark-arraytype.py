@@ -34,7 +34,7 @@ from pyspark.sql.functions import explode
 df.select(df.name,explode(df.languagesAtSchool)).show()
 
 from pyspark.sql.functions import split
-df.select(split(df.name,",").alias("nameAsArray")).show()
+df.select(split(df.name,",").alias("nameAsArray")).show()  # 两个逗号之间的空字符串也记作一个元素
 
 from pyspark.sql.functions import array
 df.select(df.name,array(df.currentState,df.previousState).alias("States")).show()

@@ -18,6 +18,6 @@ schema = StructType([
 
 dates = ['1']
 
-df = spark.createDataFrame(list('1'), schema=schema)
+df = spark.createDataFrame(list('1'), schema=schema) # 创建一个DataFrame
 
 df.show()

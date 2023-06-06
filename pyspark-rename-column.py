@@ -67,6 +67,7 @@ df4 = df.withColumn("fname",col("name.firstname")) \
       .withColumn("lname",col("name.lastname")) \
       .drop("name")
 df4.printSchema()
+# 函数挺多，有点乱，不过也还好，多了的话，才需要后续的分门别类，如果少的话，分门别类产生的益处也没有那么大
 
 ''' Example 6
 

@@ -38,4 +38,5 @@ empDF.createOrReplaceTempView("EMP")
 deptDF.createOrReplaceTempView("DEPT")
 
 joinDF2 = spark.sql("SELECT e.* FROM EMP e LEFT ANTI JOIN DEPT d ON e.emp_dept_id == d.dept_id") \
-  .show(truncate=False)    
+  .show(truncate=False)
+# a left anti join b 的功能是在查询过程中，剔除a表中和b表有交集的部分，如下：

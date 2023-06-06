@@ -11,7 +11,9 @@ spark = SparkSession.builder.appName('SparkByExamples.com') \
 df=spark.range(0,20)
 print(df.rdd.getNumPartitions())
 
-df.write.mode("overwrite").csv("c:/tmp/partition.csv")
+df.write.mode("overwrite").csv("/Users/dengshewei/test/spark/")
+# 会产生8个文件 part-00000-5cf3c3b2-3a86-4a89-8c90-bfd28b627cc4-c000.csv
+# 和一个_SUCCESS文件
 
 df2 = df.repartition(6)
 print(df2.rdd.getNumPartitions())
